@@ -59,18 +59,18 @@ document.addEventListener('DOMContentLoaded', () => {
         { image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=1920&q=80&auto=format', title: 'Marisco Fresco', subtitle: 'Do oceano diretamente para a sua mesa' },
         { image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=1920&q=80&auto=format', title: 'Carnes Selecionadas', subtitle: 'Picanha e filetes preparados com mestria' },
         { image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80&auto=format', title: 'Ambiente Elegante', subtitle: 'O cenário perfeito para momentos especiais' },
-        { image: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&q=80&auto=format', title: 'Terraça com Vista', subtitle: 'Desfrute de refeições ao ar livre' }
+        { image: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&q=80&auto=format', title: 'Vista De Amar', subtitle: 'Desfrute de refeições ao ar livre' }
     ];
 
     const premiumCuts = [
-        { name: 'T-BONE WAGYU 900g', origin: 'América', desc: 'Corte nobre wagyu com marmoreio excepcional', price: '113.500 KZ', img: 'https://drive.google.com/uc?export=view&id=1KeKzsVC45pqCS3F9p16C4DFrQ_AbcGAz' },
-        { name: 'RIBEYE BELGA 400g', origin: 'Bélgica', desc: 'Ribeye de excelente marmoreio', price: '75.950 KZ', img: 'https://drive.google.com/uc?export=view&id=1Zb1h3ebhC-MzHpVr4vEtj2dFeTq1pBHF' },
-        { name: 'COSTELÃO GALEGO 1kg', origin: 'Espanha', desc: 'Sabor profundo e incomparável', price: '122.500 KZ', img: 'https://drive.google.com/uc?export=view&id=1KeKzsVC45pqCS3F9p16C4DFrQ_AbcGAz' },
-        { name: 'LOMBO BLACK ANGUS 240g', origin: 'Uruguai', desc: 'Corte magro e tenro', price: '65.000 KZ', img: 'https://drive.google.com/uc?export=view&id=1EsRZY4rACaV3s9rP-m-MuhgQaiU9MfVe' },
-        { name: 'TOMAHAWK HUTTEN 900g', origin: 'Holanda', desc: 'Corte impressionante, osso longo', price: '168.500 KZ', img: 'https://drive.google.com/uc?export=view&id=10eoRMzZn4mF-JNm6-MhDqZCoIapMLn3-' },
-        { name: 'PICANHA BLACK ANGUS 300g', origin: 'Uruguai', desc: 'A rainha das carnes', price: '49.500 KZ', img: 'https://drive.google.com/uc?export=view&id=1G3ebCbJKs3F7M2cmmReJ6bK9HL2DRGn8' },
-        { name: 'ENTRECOTE BLACK ANGUS 300g', origin: 'Uruguai', desc: 'Excelente distribuição de gordura', price: '48.500 KZ', img: 'https://drive.google.com/uc?export=view&id=10eoRMzZn4mF-JNm6-MhDqZCoIapMLn3-' },
-        { name: 'TOMAHAWK WAGYU PREMIUM', origin: 'Namíbia', desc: 'O mais exclusivo da casa', price: 'SOB CONSULTA', img: 'https://images.unsplash.com/photo-1607672632458-9eb56696346a?w=800&q=80&auto=format' }
+        { name: 'T-BONE WAGYU 900g', origin: 'América', desc: 'Corte nobre wagyu com marmoreio excepcional', price: '113.500 KZ', img: 'grill.webp' },
+        { name: 'RIBEYE BELGA 400g', origin: 'Bélgica', desc: 'Ribeye de excelente marmoreio', price: '75.950 KZ', img: 'foto1.webp' },
+        { name: 'COSTELÃO GALEGO 1kg', origin: 'Espanha', desc: 'Sabor profundo e incomparável', price: '122.500 KZ', img: 'costela.webp' },
+        { name: 'LOMBO BLACK ANGUS 240g', origin: 'Uruguai', desc: 'Corte magro e tenro', price: '65.000 KZ', img: 'foto3.webp' },
+        { name: 'TOMAHAWK HUTTEN 900g', origin: 'Holanda', desc: 'Corte impressionante, osso longo', price: '168.500 KZ', img: 'keda.webp' },
+        { name: 'PICANHA BLACK ANGUS 300g', origin: 'Uruguai', desc: 'A rainha das carnes', price: '49.500 KZ', img: 'delicio.webp' },
+        { name: 'ENTRECOTE BLACK ANGUS 300g', origin: 'Uruguai', desc: 'Excelente distribuição de gordura', price: '48.500 KZ', img: 'entre.webp' },
+        { name: 'TOMAHAWK WAGYU PREMIUM', origin: 'Namíbia', desc: 'O mais exclusivo da casa', price: 'SOB CONSULTA', img: 'salt.webp' }
     ];
 
     const galleryImages = [

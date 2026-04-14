@@ -1,23 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    // ==========================================
-    // 1. LÓGICA DO MENU E SCROLL SUAVE
-    // ==========================================
-    
-    // Seleção dos elementos do cabeçalho
+    // Scroll and Navbar logic
     const navbar = document.getElementById('navbar');
     const mobileMenuBtn = document.getElementById('mobile-menu-btn');
     const mobileMenu = document.getElementById('mobile-menu');
     const menuLinks = document.querySelectorAll('.menu-link');
     
-    // Evento de Scroll (Muda a cor do cabeçalho ao descer a página)
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.classList.add('bg-white/10', 'backdrop-blur-md', 'py-4', 'border-b', 'border-white/20');
+            navbar.classList.add('bg-black/95', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
             navbar.classList.remove('bg-transparent', 'py-6');
         } else {
             navbar.classList.add('bg-transparent', 'py-6');
-            navbar.classList.remove('bg-white/10', 'backdrop-blur-md', 'py-4', 'border-b', 'border-white/20');
+            navbar.classList.remove('bg-black/95', 'backdrop-blur-md', 'py-4', 'shadow-2xl');
         }
         
         const sections = ['inicio', 'sobre', 'menu', 'galeria', 'criticas', 'contacto'];
@@ -43,58 +37,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Alternar abertura do Menu Mobile (Ícone Hambúrguer)
     mobileMenuBtn.addEventListener('click', () => {
         mobileMenu.classList.toggle('hidden');
     });
 
-    // Scroll suave para links com a classe 'menu-link'
-    // Aqui também funciona o 'Ver Menu' e o 'Contacto' para as respetivas secções
     menuLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const targetId = link.dataset.target;
             const element = document.getElementById(targetId);
-            
             if (element) {
-                // Desce suavemente até à secção definida em data-target
                 element.scrollIntoView({ behavior: 'smooth' });
-                // Fecha o menu mobile se estiver aberto
                 mobileMenu.classList.add('hidden');
             }
         });
     });
 
-    // ==========================================
-    // 2. BASE DE DADOS (INFORMAÇÕES E IMAGENS)
-    // ==========================================
-
-    // Dados do Banner Principal (Hero Section)
+    // Data 
     const heroSlidesData = [
-        { image: './public/images/hero-seafood.jpg', title: 'Uma Viagem Gastronómica', subtitle: 'Entre o mar e a terra, descobre sabores únicos' },
-        { image: './public/images/dish-seafood.jpg', title: 'Marisco Fresco', subtitle: 'Do oceano diretamente para a sua mesa' },
-        { image: './public/images/dish-picanha.jpg', title: 'Carnes Selecionadas', subtitle: 'Picanha e filetes preparados com mestria' },
-        { image: './public/images/interior.jpg', title: 'Ambiente Elegante', subtitle: 'O cenário perfeito para momentos especiais' },
-        { image: './public/images/dish-risotto.jpg', title: 'Sabores do Mundo', subtitle: 'A arte da culinária em cada prato' }
+        { image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80&auto=format', title: 'Uma Viagem Gastronómica', subtitle: 'Entre o mar e a terra, descobre sabores únicos' },
+        { image: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=1920&q=80&auto=format', title: 'Marisco Fresco', subtitle: 'Do oceano diretamente para a sua mesa' },
+        { image: 'https://images.unsplash.com/photo-1558030006-450675393462?w=1920&q=80&auto=format', title: 'Carnes Selecionadas', subtitle: 'Picanha e filetes preparados com mestria' },
+        { image: 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1920&q=80&auto=format', title: 'Ambiente Elegante', subtitle: 'O cenário perfeito para momentos especiais' },
+        { image: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?w=1920&q=80&auto=format', title: 'Vista De Amar', subtitle: 'Desfrute de refeições ao ar livre' }
     ];
 
     const premiumCuts = [
-        { name: 'T-BONE WAGYU 900g', origin: 'América', desc: 'Corte nobre wagyu com marmoreio excepcional', price: '113.500 KZ', img: 'https://drive.google.com/uc?export=view&id=1KeKzsVC45pqCS3F9p16C4DFrQ_AbcGAz' },
-        { name: 'RIBEYE BELGA 400g', origin: 'Bélgica', desc: 'Ribeye de excelente marmoreio', price: '75.950 KZ', img: 'https://drive.google.com/uc?export=view&id=1Zb1h3ebhC-MzHpVr4vEtj2dFeTq1pBHF' },
-        { name: 'COSTELÃO GALEGO 1kg', origin: 'Espanha', desc: 'Sabor profundo e incomparável', price: '122.500 KZ', img: 'https://drive.google.com/uc?export=view&id=1KeKzsVC45pqCS3F9p16C4DFrQ_AbcGAz' },
-        { name: 'LOMBO BLACK ANGUS 240g', origin: 'Uruguai', desc: 'Corte magro e tenro', price: '65.000 KZ', img: 'https://drive.google.com/uc?export=view&id=1EsRZY4rACaV3s9rP-m-MuhgQaiU9MfVe' },
-        { name: 'TOMAHAWK HUTTEN 900g', origin: 'Holanda', desc: 'Corte impressionante, osso longo', price: '168.500 KZ', img: 'https://drive.google.com/uc?export=view&id=10eoRMzZn4mF-JNm6-MhDqZCoIapMLn3-' },
-        { name: 'PICANHA BLACK ANGUS 300g', origin: 'Uruguai', desc: 'A rainha das carnes', price: '49.500 KZ', img: 'https://drive.google.com/uc?export=view&id=1G3ebCbJKs3F7M2cmmReJ6bK9HL2DRGn8' },
-        { name: 'ENTRECOTE BLACK ANGUS 300g', origin: 'Uruguai', desc: 'Excelente distribuição de gordura', price: '48.500 KZ', img: 'https://drive.google.com/uc?export=view&id=10eoRMzZn4mF-JNm6-MhDqZCoIapMLn3-' },
-        { name: 'TOMAHAWK WAGYU PREMIUM', origin: 'Namíbia', desc: 'O mais exclusivo da casa', price: 'SOB CONSULTA', img: 'https://images.unsplash.com/photo-1607672632458-9eb56696346a?w=800&q=80&auto=format' }
+        { name: 'T-BONE WAGYU 900g', origin: 'América', desc: 'Corte nobre wagyu com marmoreio excepcional', price: '113.500 KZ', img: 'grill.webp' },
+        { name: 'RIBEYE BELGA 400g', origin: 'Bélgica', desc: 'Ribeye de excelente marmoreio', price: '75.950 KZ', img: 'foto1.webp' },
+        { name: 'COSTELÃO GALEGO 1kg', origin: 'Espanha', desc: 'Sabor profundo e incomparável', price: '122.500 KZ', img: 'costela.webp' },
+        { name: 'LOMBO BLACK ANGUS 240g', origin: 'Uruguai', desc: 'Corte magro e tenro', price: '65.000 KZ', img: 'foto3.webp' },
+        { name: 'TOMAHAWK HUTTEN 900g', origin: 'Holanda', desc: 'Corte impressionante, osso longo', price: '168.500 KZ', img: 'keda.webp' },
+        { name: 'PICANHA BLACK ANGUS 300g', origin: 'Uruguai', desc: 'A rainha das carnes', price: '49.500 KZ', img: 'delicio.webp' },
+        { name: 'ENTRECOTE BLACK ANGUS 300g', origin: 'Uruguai', desc: 'Excelente distribuição de gordura', price: '48.500 KZ', img: 'entre.webp' },
+        { name: 'TOMAHAWK WAGYU PREMIUM', origin: 'Namíbia', desc: 'O mais exclusivo da casa', price: 'SOB CONSULTA', img: 'salt.webp' }
     ];
 
     const galleryImages = [
-        { src: './public/images/dish-seafood.jpg', title: 'Mariscos Frescos', desc: 'Sabores do mar atlântico' },
-        { src: './public/images/interior.jpg', title: 'Ambiente Sofisticado', desc: 'Decoração moderna' },
-        { src: './public/images/dish-picanha.jpg', title: 'Carnes Premium', desc: 'Seleção especial' },
-        { src: './public/images/dish-risotto.jpg', title: 'Especialidades', desc: 'Receitas exclusivas' },
-        { src: './public/images/hero-seafood.jpg', title: 'Gastronomia', desc: 'Viagem de sabores' }
+        { src: 'https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=800&q=80', title: 'Mariscos Frescos', desc: 'Sabores do mar atlântico' },
+        { src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80', title: 'Ambiente Sofisticado', desc: 'Decoração moderna' },
+        { src: 'https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80', title: 'Carnes Premium', desc: 'Seleção especial' },
+        { src: 'https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=800&q=80', title: 'Especialidades', desc: 'Receitas exclusivas' },
+        { src: 'https://images.unsplash.com/photo-1615141982883-c7ad0e69fd62?w=800&q=80', title: 'Gastronomia', desc: 'Viagem de sabores' }
     ];
 
     const reviewsData = [
@@ -103,16 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
         { name: 'Graça V.', text: 'Celebrámos o nosso aniversário de casamento no Terraza e foi perfeito.', rating: 5, date: 'há 1 mês' },
         { name: 'Fernando G.', text: 'Boa comida e ambiente agradável. Pedi o camarão tigre.', rating: 4, date: 'há 1 mês' },
         { name: 'Luísa M.', text: 'Simplesmente fantástico! A esplanada é linda.', rating: 5, date: 'há 1 mês' },
-        { name: 'Pedro N.', text: 'Ambiente discreto e elegante, perfeito para reuniões.', rating: 5, date: 'há 2 meses' },
-        { name: 'Marta C.', text: 'O melhor sítio para comer marisco em Luanda! Fresco e bem preparado.', rating: 5, date: 'há 2 meses' },
-        { name: 'Hélder S.', text: 'Bom restaurante com boa variedade no menu.', rating: 4, date: 'há 2 meses' }
+        { name: 'Pedro N.', text: 'Ambiente discreto e elegante, perfeito para reuniões.', rating: 5, date: 'há 2 meses' }
     ];
 
-    // ==========================================
-    // 3. RENDERIZAÇÃO E LÓGICA DO MENU DE PRATOS
-    // ==========================================
-
-    // Geração do Menu Dinâmico na página
+    // Generate Menu
     const menuContainer = document.getElementById('menu-container');
     let menuHtml = `<div class="mb-20">
         <div class="relative bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-[#1a1a1a] via-[#0a0a0a] to-[#0a0a0a] border border-[#D4AF37]/30 rounded-sm p-1">
@@ -121,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="border border-[#D4AF37]/10 p-6 sm:p-10 flex flex-col md:flex-row gap-8 items-center group relative overflow-hidden">
                 <div class="w-full md:w-1/2 aspect-[4/3] rounded-sm overflow-hidden relative">
-                    <img src="./public/images/dish-picanha.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pata Negra">
+                    <img src="negra.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Pata Negra">
                 </div>
                 <div class="w-full md:w-1/2 text-center md:text-left relative z-10">
                     <h3 class="font-serif text-3xl sm:text-4xl text-white mb-4">PRESUNTO PATA NEGRA</h3>
@@ -164,11 +142,9 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>`;
     });
     menuHtml += '</div></div>';
-    menuContainer.innerHTML = menuHtml; // Renderiza os dados no HTML
+    menuContainer.innerHTML = menuHtml;
 
-    // ==========================================
-    // 4. LÓGICA DO BANNER AUTOMÁTICO (SLIDESHOW)
-    // ==========================================
+    // Generate Hero
     const heroSlidesContainer = document.getElementById('hero-slides-container');
     const heroTextsContainer = document.getElementById('hero-texts-container');
     const heroDotsContainer = document.getElementById('hero-dots-container');
@@ -183,13 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
         
         heroTextsContainer.innerHTML += `
             <div class="hero-text absolute inset-0 transition-all duration-700 ease-in-out ${i===0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-                <h1 class="font-serif text-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] font-medium max-w-[15ch] [text-shadow:0_10px_30px_rgba(255,255,255,0.8)]">
+                <h1 class="font-serif text-black text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-[0.95] font-medium max-w-[11ch] [text-shadow:0_10px_30px_rgba(255,255,255,0.8)]">
                     ${slide.title}
                 </h1>
-                <p class="mt-3 sm:mt-4 text-black/80 text-xl sm:text-2xl md:text-3xl font-light italic leading-relaxed max-w-[25ch] [text-shadow:0_2px_15px_rgba(255,255,255,0.9)]">
+                <p class="mt-4 sm:mt-5 text-black/80 text-3xl sm:text-4xl md:text-5xl font-light italic leading-relaxed max-w-[20ch] [text-shadow:0_2px_15px_rgba(255,255,255,0.9)]">
                     ${slide.subtitle}
                 </p>
             </div>`;
+            
+        heroDotsContainer.innerHTML += `<button class="hero-dot transition-all duration-300 rounded-full ${i===0 ? 'w-6 sm:w-8 h-2 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] shadow-lg' : 'w-2 h-2 bg-[#F5E6C8]/40'}"></button>`;
     });
 
     // Hero Logic
@@ -210,9 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[currentHero].classList.replace('scale-100', 'scale-105');
         texts[currentHero].classList.replace('opacity-100', 'opacity-0');
         texts[currentHero].classList.replace('translate-y-0', 'translate-y-4');
-        if (dots.length > 0) {
-            dots[currentHero].className = 'hero-dot transition-all duration-300 rounded-full w-2 h-2 bg-[#F5E6C8]/40';
-        }
+        dots[currentHero].className = 'hero-dot transition-all duration-300 rounded-full w-2 h-2 bg-[#F5E6C8]/40';
         
         currentHero = i;
         
@@ -220,27 +196,24 @@ document.addEventListener('DOMContentLoaded', () => {
         slides[currentHero].classList.replace('scale-105', 'scale-100');
         texts[currentHero].classList.replace('opacity-0', 'opacity-100');
         texts[currentHero].classList.replace('translate-y-4', 'translate-y-0');
-        if (dots.length > 0) {
-            dots[currentHero].className = 'hero-dot transition-all duration-300 rounded-full w-6 sm:w-8 h-2 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] shadow-lg';
-        }
+        dots[currentHero].className = 'hero-dot transition-all duration-300 rounded-full w-6 sm:w-8 h-2 bg-gradient-to-r from-[#D4AF37] to-[#F5D76E] shadow-lg';
         
         setTimeout(() => heroTransitioning = false, 700);
     };
     
-    const heroNextBtn = document.getElementById('hero-next');
-    const heroPrevBtn = document.getElementById('hero-prev');
-    if (heroNextBtn) heroNextBtn.onclick = () => goHero((currentHero + 1) % heroSlidesData.length);
-    if (heroPrevBtn) heroPrevBtn.onclick = () => goHero((currentHero - 1 + heroSlidesData.length) % heroSlidesData.length);
+    const nextBtn = document.getElementById('hero-next');
+    if (nextBtn) nextBtn.onclick = () => goHero((currentHero + 1) % heroSlidesData.length);
     
-    heroSection.onmouseenter = () => heroPaused = true; // Para o banner ao passar o rato
+    const prevBtn = document.getElementById('hero-prev');
+    if (prevBtn) prevBtn.onclick = () => goHero((currentHero - 1 + heroSlidesData.length) % heroSlidesData.length);
+    
+    document.querySelectorAll('.hero-dot').forEach((d,i) => d.onclick = () => goHero(i));
+    
+    heroSection.onmouseenter = () => heroPaused = true;
     heroSection.onmouseleave = () => heroPaused = false;
-    
-    // Troca os banners de 8 em 8 segundos
     setInterval(() => { if(!heroPaused) goHero((currentHero + 1) % heroSlidesData.length); }, 8000);
 
-    // ==========================================
-    // 5. LÓGICA DA GALERIA (MOMENTOS ESPECIAIS)
-    // ==========================================
+    // Generate Gallery
     const galleryContainer = document.getElementById('gallery-container');
     const galleryThumbs = document.getElementById('gallery-thumbs');
     
@@ -293,17 +266,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setTimeout(() => galleryTransitioning = false, 500);
     };
     
-    // Clica nas miniaturas para trocar a galeria e define o automático para 5 segundos
     document.querySelectorAll('.gallery-thumb').forEach((t, i) => t.onclick = () => goGallery(i));
     setInterval(() => goGallery((currentGallery + 1) % galleryImages.length), 5000);
 
-    // ==========================================
-    // 6. CARROSSEL DE COMENTÁRIOS (INFINITO)
-    // ==========================================
+    // Generate Reviews
     const revContainer = document.getElementById('reviews-container');
-    
-    // Duplica os comentários da base de dados para fazer o efeito infinito
-    const allReviews = [...reviewsData, ...reviewsData, ...reviewsData, ...reviewsData];
+    const allReviews = [...reviewsData, ...reviewsData, ...reviewsData]; // duplicates for infinity scroll
     
     allReviews.forEach(r => {
         const starHtml = '<svg class="w-3.5 h-3.5 text-amber-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>'.repeat(5);
